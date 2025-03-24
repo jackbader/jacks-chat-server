@@ -25,7 +25,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production' 
-      ? process.env.CLIENT_URL || "https://your-app-name.onrender.com"
+      ? process.env.CLIENT_URL
       : "http://localhost:3000",
     methods: ["GET", "POST"]
   }
