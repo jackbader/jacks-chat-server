@@ -8,6 +8,7 @@ router.get('/:roomId', async (req, res) => {
     const { roomId } = req.params;
     const messages = await Message.find({ room: roomId })
       .sort({ timestamp: 1 });
+
     
     res.status(200).json(messages);
   } catch (error) {
@@ -18,8 +19,11 @@ router.get('/:roomId', async (req, res) => {
 // Create a new message
 router.post('/', async (req, res) => {
   try {
+    console.log('create new message req.body', req.body);
     const newMessage = new Message(req.body);
     const savedMessage = await newMessage.save();
+
+    console.log('savedMessage', savedMessage);
     
     res.status(201).json(savedMessage);
   } catch (error) {

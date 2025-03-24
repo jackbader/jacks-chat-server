@@ -31,6 +31,8 @@ const io = new Server(server, {
   }
 });
 
+console.log('process.env.MONGO_URI', process.env.MONGO_URI);
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/live-chat')
   .then(() => console.log('Connected to MongoDB'))
@@ -42,6 +44,7 @@ io.on('connection', (socket) => {
   
   // Join a room
   socket.on('join_room', (roomId) => {
+    console.log('join_room', roomId);
     socket.join(roomId);
     console.log(`User ${socket.id} joined room: ${roomId}`);
   });
